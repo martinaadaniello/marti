@@ -12,11 +12,11 @@ videos.forEach(v => {
     v.currentTime = 0.01;
 });
 
-// helper: snap scrub instead of continuous scrub
+// helper: set time synchronously. GSAP already runs inside requestAnimationFrame!
 function setVideoTime(video, time) {
-    requestAnimationFrame(() => {
+    if (!isNaN(time) && video.readyState >= 1) {
         video.currentTime = time;
-    });
+    }
 }
 
 const tl = gsap.timeline({
@@ -24,7 +24,7 @@ const tl = gsap.timeline({
         trigger: ".scroll-container",
         start: "top top",
         end: "bottom bottom",
-        scrub: true, // 🔥 IMPORTANT: disable continuous scrubbing
+        scrub: 1.5, // 🔥 IMPORTANT: 'true' causes stuttering because it tracks rigid mouse wheel clicks. 1.5 adds smooth momentum!
         onUpdate: (self) => {
 
             const p = self.progress;
