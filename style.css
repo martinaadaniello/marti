@@ -145,3 +145,11 @@ p {
     color: var(--text-dark);
     transform: scale(1.05);
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .story-video {
+        object-fit: cover;
+        /* Fills the portrait screen perfectly without black bars */
+    }
+}
