@@ -12,6 +12,23 @@ videos.forEach(v => {
     v.currentTime = 0.01;
 });
 
+// iOS Mobile Unlocker: Browsers block programmatic video control until a user interacts with the page.
+let isUnlocked = false;
+function unlockVideos() {
+    if (isUnlocked) return;
+    videos.forEach(v => {
+        const p = v.play();
+        if (p !== undefined) {
+            p.then(() => { v.pause(); }).catch(() => {});
+        }
+    });
+    isUnlocked = true;
+    window.removeEventListener('touchstart', unlockVideos);
+    window.removeEventListener('click', unlockVideos);
+}
+window.addEventListener('touchstart', unlockVideos);
+window.addEventListener('click', unlockVideos);
+
 // helper: set time synchronously. GSAP already runs inside requestAnimationFrame!
 function setVideoTime(video, time) {
     if (!isNaN(time) && video.readyState >= 1) {
