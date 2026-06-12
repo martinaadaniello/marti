@@ -8,78 +8,103 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <nav id="custom-navbar">
     <div class="nav-left">
-    <a href="#">Shop ▼</a>
-    <a href="#">Collections ▼</a>
-    <a href="#">About ▼</a>
-</div>
+        <a href="#">Shop ▼</a>
+        <a href="#">Collections ▼</a>
+        <a href="#">About ▼</a>
+    </div>
 
-<div class="nav-logo">
-    <img src="assets/gisou-logo.svg" alt="Gisou">
-</div>
+    <div class="nav-logo">
+        <img src="assets/gisou-logo.svg" alt="Gisou">
+    </div>
 
-<div class="nav-right">
-    <a href="#">Search</a>
-    <a href="#">Account</a>
-    <a href="acquisto.html">Cart</a>
-</div>
+    <div class="nav-right">
+        <a href="#">Search</a>
+        <a href="#">Account</a>
+        <a href="acquisto.html">Cart</a>
+    </div>
 </nav>
-  <div class="scroll-container">
-    <div class="sticky-section">
-      <!-- Cinematic Background Videos -->
-      <div class="video-container">
-        <video id="vid1" src="assets/01-product-reveal.mp4" muted playsinline preload="auto" class="story-video active"></video>
-        <video id="vid2" src="assets/02-honey-universe.mp4" muted playsinline preload="auto" class="story-video"></video>
-        <video id="vid3" src="assets/03-final-hero.mp4" muted playsinline preload="auto" class="story-video"></video>
-      </div>
 
+<div class="scroll-container">
+    <div class="sticky-section">
+
+        <!-- Videos -->
+        <div class="video-container">
+            <video id="vid1" src="assets/01-product-reveal.mp4" muted playsinline preload="auto" class="story-video active"></video>
+
+            <video id="vid2" src="assets/02-honey-universe.mp4" muted playsinline preload="auto" class="story-video"></video>
+
+            <video id="vid3" src="assets/03-final-hero.mp4" muted playsinline preload="auto" class="story-video"></video>
+        </div>
 
     </div>
-  </div>
+</div>
+
+<!-- LIQUID GLASS ADD TO CART -->
+
 <div style="
 position:fixed;
-bottom:40px;
+bottom:50px;
 left:50%;
 transform:translateX(-50%);
 z-index:999999;
 ">
-<button id="add-to-cart" class="buy-btn">
-ADD TO CART
-</button>
+
+<a
+    href="acquisto.html"
+    id="add-to-cart"
+    class="liquid-buy-btn"
+>
+    ADD TO CART
+</a>
+
 </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("add-to-cart");
+
+    const button =
+        document.getElementById("add-to-cart");
+
     button.addEventListener("click", () => {
+
         const cart =
             JSON.parse(localStorage.getItem("cart")) || [];
-        const existingProduct = cart.find(
-            item => item.name === "Honey Infused Lip Oil"
-        );
+
+        const existingProduct =
+            cart.find(
+                item => item.name === "Honey Infused Lip Oil"
+            );
+
         if(existingProduct){
+
             existingProduct.quantity += 1;
-        }else{
+
+        } else {
+
             cart.push({
                 name: "Honey Infused Lip Oil",
                 price: 28,
-                quantity: 1
+                quantity: 1,
+                image: "assets/product.jpg"
             });
         }
+
         localStorage.setItem(
             "cart",
             JSON.stringify(cart)
         );
+
         button.innerHTML = "✓ ADDED";
-        
-        setTimeout(() => {
-            button.innerHTML = "ADD TO CART";
-        }, 1500);
     });
 });
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
