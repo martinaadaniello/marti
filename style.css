@@ -293,3 +293,19 @@ p {
 
     background: transparent;
 }
+.nav-logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+}
+
+.nav-logo img{
+    height:28px;
+    width:auto;
+    display:block;
+    opacity:0.95;
+}
