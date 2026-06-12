@@ -1,40 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gisou | The Honey Universe</title>
-  <meta name="description" content="Discover the golden standard of lip care.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
 
-<nav id="custom-navbar">
-    <div class="nav-left">
-        <a href="#">Shop ▼</a>
-        <a href="#">Collections ▼</a>
-        <a href="#">About ▼</a>
-    </div>
+    const videos = [
+        document.getElementById("vid1"),
+        document.getElementById("vid2"),
+        document.getElementById("vid3")
+    ];
 
-    <div class="nav-logo">
-        <img src="assets/gisou-logo.svg" alt="Gisou">
-    </div>
+    // aspetta che tutti i video abbiano metadata
+    await Promise.all(videos.map(v =>
+        new Promise(res => v.addEventListener("loadedmetadata", res))
+    ));
 
-    <div class="nav-right">
-        <a href="#">Search</a>
-        <a href="#">Account</a>
-        <a href="acquisto.html">Cart</a>
-    </div>
-</nav>
+    const durations = videos.map(v => v.duration);
 
-<div class="scroll-container">
-    <div class="sticky-section">
+    // IMPORTANTISSIMO: pausa tutti
+    videos.forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+    });
 
-        <!-- Videos -->
-        <div class="video-container">
-            <video id="vid1" src="assets/01-product-reveal.mp4" muted playsinline preload="auto" class="story-video active"></video>
+    let ticking = false;
 
-            <video id="vid2" src="assets/02-honey-universe.mp4" muted playsinline preload="auto" class="story-video"></video>
+    function updateVideos() {
+
+        const scrollTop = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+        const progress = scrollTop / maxScroll;
+
+        const segment = 1 / videos.length;
+
+        videos.forEach((video, i) => {
+
+            const start = segment * i;
+            const end = segment * (i + 1);
+
+            let localProgress = (progress - start) / (end - start);
+
+            localProgress = Math.max(0, Math.min(1, localProgress));
+
+            video.currentTime = localProgress * durations[i];
+
+        });
+
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            requestAnimationFrame(updateVideos);
+            ticking = true;
+        }
+    });
+
+});
+</script>            <video id="vid2" src="assets/02-honey-universe.mp4" muted playsinline preload="auto" class="story-video"></video>
 
             <video id="vid3" src="assets/03-final-hero.mp4" muted playsinline preload="auto" class="story-video"></video>
         </div>
