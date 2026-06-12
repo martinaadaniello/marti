@@ -292,3 +292,70 @@ p {
         letter-spacing: 0.06em;
     }
 }
+gsap.registerPlugin(ScrollTrigger);
+
+const videos = [
+  document.getElementById("vid1"),
+  document.getElementById("vid2"),
+  document.getElementById("vid3")
+];
+
+const texts = [
+  document.getElementById("scene1"),
+  document.getElementById("scene2"),
+  document.getElementById("scene3")
+];
+
+videos.forEach((video, index) => {
+  video.pause();
+  video.currentTime = 0;
+  video.classList.toggle("active", index === 0);
+});
+
+texts.forEach((text, index) => {
+  text.classList.toggle("active", index === 0);
+});
+
+function setActiveScene(index) {
+  videos.forEach((video, i) => {
+    video.classList.toggle("active", i === index);
+  });
+
+  texts.forEach((text, i) => {
+    text.classList.toggle("active", i === index);
+  });
+}
+
+function initScrollVideo(video, index) {
+  video.addEventListener("loadedmetadata", () => {
+    const sceneLength = window.innerHeight * 2;
+
+    ScrollTrigger.create({
+      trigger: ".scroll-container",
+      start: () => `top top-=${index * sceneLength}`,
+      end: () => `top top-=${(index + 1) * sceneLength}`,
+      scrub: true,
+      invalidateOnRefresh: true,
+      onUpdate: self => {
+        const time = self.progress * video.duration;
+        if (!isNaN(time)) {
+          video.currentTime = time;
+        }
+        setActiveScene(index);
+      }
+    });
+  });
+}
+
+videos.forEach((video, index) => {
+  initScrollVideo(video, index);
+});
+
+ScrollTrigger.create({
+  trigger: ".scroll-container",
+  start: "top top",
+  end: () => `+=${window.innerHeight * 6}`,
+  pin: ".sticky-section",
+  scrub: true,
+  invalidateOnRefresh: true
+});
