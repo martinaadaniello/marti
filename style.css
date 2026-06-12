@@ -291,10 +291,23 @@ p {
     h1 {
         letter-spacing: 0.06em;
     }
+}
+
+/* MENU NAVBAR */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-item {
+    position: relative;
+    list-style: none;
+}
 
 /* Dropdown nascosti */
 .dropdown {
-    display: none;
+    display: none !important;
     position: absolute;
     top: 100%;
     left: 0;
@@ -310,16 +323,11 @@ p {
     z-index: 2000;
 }
 
-/* Mostra dropdown solo al passaggio del mouse */
-.nav-item {
-    position: relative;
-}
-
+/* Mostra dropdown solo hover */
 .nav-item:hover .dropdown {
-    display: block;
+    display: block !important;
 }
 
-/* Stile voci dropdown */
 .dropdown li {
     list-style: none;
 }
