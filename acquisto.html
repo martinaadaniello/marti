@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrello</title>
+
+<style>
+body{
+    font-family: Inter, sans-serif;
+    background:#111;
+    color:white;
+    padding:40px;
+}
+
+.item{
+    border:1px solid #333;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<h1>🛒 Carrello</h1>
+
+<div id="cart"></div>
+
+<script>
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const container = document.getElementById("cart");
+
+if(cart.length === 0){
+    container.innerHTML = "<p>Il carrello è vuoto.</p>";
+}else{
+    cart.forEach(item => {
+        container.innerHTML += `
+            <div class="item">
+                <h3>${item.name}</h3>
+                <p>Prezzo: €${item.price}</p>
+                <p>Quantità: ${item.quantity}</p>
+            </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
