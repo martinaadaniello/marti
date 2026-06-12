@@ -53,9 +53,9 @@ z-index:999999;
 ">
 
 <a
-    href="acquisto.html"
+    href="#"
     id="add-to-cart"
-    class="buy-btn"
+    class="liquid-buy-btn"
 >
     ADD TO CART
 </a>
@@ -65,10 +65,11 @@ z-index:999999;
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    const button =
-        document.getElementById("add-to-cart");
+    const button = document.getElementById("add-to-cart");
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+
+        e.preventDefault();
 
         const cart =
             JSON.parse(localStorage.getItem("cart")) || [];
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 item => item.name === "Honey Infused Lip Oil"
             );
 
-        if(existingProduct){
+        if (existingProduct) {
 
             existingProduct.quantity += 1;
 
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 quantity: 1,
                 image: "assets/product.jpg"
             });
+
         }
 
         localStorage.setItem(
@@ -98,13 +100,12 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         button.innerHTML = "✓ ADDED";
+
+        setTimeout(() => {
+            window.location.href = "acquisto.html";
+        }, 700);
+
     });
+
 });
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="script.js"></script>
-
-</body>
-</html>
