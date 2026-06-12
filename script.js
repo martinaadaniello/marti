@@ -38,17 +38,14 @@ function createVideoScroll(video, index) {
     const sceneLength = window.innerHeight * 2;
 
     ScrollTrigger.create({
-      trigger: ".scroll-container",
-      start: () => `top top-=${index * sceneLength}`,
-      end: () => `top top-=${(index + 1) * sceneLength}`,
-      scrub: 1,
-      invalidateOnRefresh: true,
-      onUpdate: self => {
-        const time = self.progress * video.duration;
-
-        if (!isNaN(time) && video.readyState >= 1) {
-          video.currentTime = time;
-        }
+  trigger: ".scroll-container",
+  start: "top top",
+  end: () => `+=${window.innerHeight * 6}`,
+  pin: ".sticky-section",
+  pinSpacing: false,
+  scrub: 1,
+  invalidateOnRefresh: true
+});
 
         setActiveScene(index);
       }
