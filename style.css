@@ -173,9 +173,6 @@ p {
 #custom-navbar.visible {
     transform: translate(-50%, 15px);
 }
-#custom-navbar.visible {
-    transform: translate(-50%, 15px);
-}
 
 /* LIQUID GLASS */
 #custom-navbar::before {
@@ -205,20 +202,6 @@ p {
     );
 
     pointer-events: none;
-}
-/* LOGO */
-.nav-logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-}
-
-.nav-logo img {
-    height: 32px;
-    width: auto;
-    display: block;
 }
 
 /* MENU SINISTRA */
