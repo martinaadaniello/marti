@@ -99,3 +99,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+/* ==========================================
+   CARTIER HOVER NAVBAR
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const navbar = document.getElementById("custom-navbar");
+
+    if (!navbar) return;
+
+    let mouseInsideNavbar = false;
+
+    navbar.addEventListener("mouseenter", () => {
+        mouseInsideNavbar = true;
+        navbar.classList.add("visible");
+    });
+
+    navbar.addEventListener("mouseleave", () => {
+        mouseInsideNavbar = false;
+        navbar.classList.remove("visible");
+    });
+
+    document.addEventListener("mousemove", (e) => {
+
+        if (e.clientY <= 50) {
+            navbar.classList.add("visible");
+        } else if (!mouseInsideNavbar) {
+            navbar.classList.remove("visible");
+        }
+
+    });
+
+});
