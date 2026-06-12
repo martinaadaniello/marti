@@ -1,3 +1,11 @@
+<div class="video-container">
+    <video id="vid1" src="assets/01-product-reveal.mp4" muted playsinline preload="metadata" class="story-video"></video>
+
+    <video id="vid2" src="assets/02-honey-universe.mp4" muted playsinline preload="metadata" class="story-video"></video>
+
+    <video id="vid3" src="assets/03-final-hero.mp4" muted playsinline preload="metadata" class="story-video"></video>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -7,18 +15,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("vid3")
     ];
 
-    // aspetta che tutti i video abbiano metadata
-    await Promise.all(videos.map(v =>
-        new Promise(res => v.addEventListener("loadedmetadata", res))
-    ));
-
-    const durations = videos.map(v => v.duration);
-
-    // IMPORTANTISSIMO: pausa tutti
+    // blocca qualsiasi autoplay
     videos.forEach(v => {
         v.pause();
         v.currentTime = 0;
     });
+
+    // aspetta metadata video
+    await Promise.all(
+        videos.map(v =>
+            new Promise(res => v.addEventListener("loadedmetadata", res))
+        )
+    );
+
+    const durations = videos.map(v => v.duration);
 
     let ticking = false;
 
@@ -27,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const scrollTop = window.scrollY;
         const maxScroll = document.body.scrollHeight - window.innerHeight;
 
-        const progress = scrollTop / maxScroll;
+        const progress = maxScroll > 0 ? (scrollTop / maxScroll) : 0;
 
         const segment = 1 / videos.length;
 
@@ -52,130 +62,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             requestAnimationFrame(updateVideos);
             ticking = true;
         }
-    });
-
-});
-</script>            <video id="vid2" src="assets/02-honey-universe.mp4" muted playsinline preload="auto" class="story-video"></video>
-
-            <video id="vid3" src="assets/03-final-hero.mp4" muted playsinline preload="auto" class="story-video"></video>
-        </div>
-
-    </div>
-</div>
-
-<!-- LIQUID GLASS ADD TO CART -->
-
-<div style="
-position:fixed;
-bottom:50px;
-left:50%;
-transform:translateX(-50%);
-z-index:999999;
-">
-
-<a
-    href="#"
-    id="add-to-cart"
-    class="liquid-buy-btn"
->
-    ADD TO CART
-</a>
-
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-    const button = document.getElementById("add-to-cart");
-
-    button.addEventListener("click", (e) => {
-
-        e.preventDefault();
-
-        const cart =
-            JSON.parse(localStorage.getItem("cart")) || [];
-
-        const existingProduct =
-            cart.find(
-                item => item.name === "Honey Infused Lip Oil"
-            );
-
-        if (existingProduct) {
-
-            existingProduct.quantity += 1;
-
-        } else {
-
-            cart.push({
-                name: "Honey Infused Lip Oil",
-                price: 28,
-                quantity: 1,
-                image: "assets/product.jpg"
-            });
-
-        }
-
-        localStorage.setItem(
-            "cart",
-            JSON.stringify(cart)
-        );
-
-        button.innerHTML = "✓ ADDED";
-
-        setTimeout(() => {
-            window.location.href = "acquisto.html";
-        }, 700);
-
-    });
-
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-    const videos = [
-        document.getElementById("vid1"),
-        document.getElementById("vid2"),
-        document.getElementById("vid3")
-    ];
-
-    let currentIndex = 0;
-
-    function showVideo(index) {
-
-        videos.forEach((v, i) => {
-            if (i === index) {
-                v.style.opacity = 1;
-                v.style.zIndex = 2;
-                v.play();
-            } else {
-                v.style.opacity = 0;
-                v.pause();
-            }
-        });
-
-    }
-
-    showVideo(0);
-
-    window.addEventListener("scroll", () => {
-
-        const scrollY = window.scrollY;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-
-        const progress = scrollY / maxScroll;
-
-        const newIndex =
-            Math.min(
-                videos.length - 1,
-                Math.floor(progress * videos.length)
-            );
-
-        if (newIndex !== currentIndex) {
-            currentIndex = newIndex;
-            showVideo(currentIndex);
-        }
-
     });
 
 });
