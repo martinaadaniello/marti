@@ -76,3 +76,26 @@ const tl = gsap.timeline({
         }
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('custom-navbar');
+
+    if (!navbar) return;
+
+    let hoveringNavbar = false;
+
+    navbar.addEventListener('mouseenter', () => {
+        hoveringNavbar = true;
+    });
+
+    navbar.addEventListener('mouseleave', () => {
+        hoveringNavbar = false;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (e.clientY < 80 || hoveringNavbar) {
+            navbar.classList.add('visible');
+        } else {
+            navbar.classList.remove('visible');
+        }
+    });
+});
