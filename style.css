@@ -59,8 +59,13 @@ h1, h2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
 }
 
+.story-video.active {
+    opacity: 1;
+}
 /* TEXT */
 .text-container {
     position: absolute;
