@@ -29,9 +29,8 @@ h1, h2 {
 
 /* SCROLL SECTION */
 .scroll-container {
-    height: calc(100vh * 7);
+    height: 600vh;
 }
-
 .sticky-section {
     position: sticky;
     top: 0;
