@@ -1,67 +1,66 @@
-<div class="video-container">
-    <video id="vid1" src="assets/01-product-reveal.mp4" muted playsinline preload="metadata" class="story-video"></video>
+<!-- LIQUID GLASS ADD TO CART -->
 
-    <video id="vid2" src="assets/02-honey-universe.mp4" muted playsinline preload="metadata" class="story-video"></video>
+<div style="
+position:fixed;
+bottom:50px;
+left:50%;
+transform:translateX(-50%);
+z-index:999999;
+">
 
-    <video id="vid3" src="assets/03-final-hero.mp4" muted playsinline preload="metadata" class="story-video"></video>
+<a
+    href="#"
+    id="add-to-cart"
+    class="liquid-buy-btn"
+>
+    ADD TO CART
+</a>
+
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const videos = [
-        document.getElementById("vid1"),
-        document.getElementById("vid2"),
-        document.getElementById("vid3")
-    ];
+    const button = document.getElementById("add-to-cart");
 
-    // blocca qualsiasi autoplay
-    videos.forEach(v => {
-        v.pause();
-        v.currentTime = 0;
-    });
+    button.addEventListener("click", (e) => {
 
-    // aspetta metadata video
-    await Promise.all(
-        videos.map(v =>
-            new Promise(res => v.addEventListener("loadedmetadata", res))
-        )
-    );
+        e.preventDefault();
 
-    const durations = videos.map(v => v.duration);
+        const cart =
+            JSON.parse(localStorage.getItem("cart")) || [];
 
-    let ticking = false;
+        const existingProduct =
+            cart.find(
+                item => item.name === "Honey Infused Lip Oil"
+            );
 
-    function updateVideos() {
+        if (existingProduct) {
 
-        const scrollTop = window.scrollY;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
+            existingProduct.quantity += 1;
 
-        const progress = maxScroll > 0 ? (scrollTop / maxScroll) : 0;
+        } else {
 
-        const segment = 1 / videos.length;
+            cart.push({
+                name: "Honey Infused Lip Oil",
+                price: 28,
+                quantity: 1,
+                image: "assets/product.jpg"
+            });
 
-        videos.forEach((video, i) => {
-
-            const start = segment * i;
-            const end = segment * (i + 1);
-
-            let localProgress = (progress - start) / (end - start);
-
-            localProgress = Math.max(0, Math.min(1, localProgress));
-
-            video.currentTime = localProgress * durations[i];
-
-        });
-
-        ticking = false;
-    }
-
-    window.addEventListener("scroll", () => {
-        if (!ticking) {
-            requestAnimationFrame(updateVideos);
-            ticking = true;
         }
+
+        localStorage.setItem(
+            "cart",
+            JSON.stringify(cart)
+        );
+
+        button.innerHTML = "✓ ADDED";
+
+        setTimeout(() => {
+            window.location.href = "acquisto.html";
+        }, 700);
+
     });
 
 });
