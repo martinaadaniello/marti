@@ -173,7 +173,39 @@ p {
 #custom-navbar.visible {
     transform: translate(-50%, 15px);
 }
+#custom-navbar.visible {
+    transform: translate(-50%, 15px);
+}
 
+/* LIQUID GLASS */
+#custom-navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.12),
+        rgba(255,255,255,0.02)
+    );
+
+    pointer-events: none;
+}
+
+#custom-navbar::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+
+    background: radial-gradient(
+        circle at top,
+        rgba(255,255,255,0.08),
+        transparent 60%
+    );
+
+    pointer-events: none;
+}
 /* LOGO */
 .nav-logo {
     margin-right: 60px;
