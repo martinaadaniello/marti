@@ -1,67 +1,112 @@
-<!-- LIQUID GLASS ADD TO CART -->
+<!DOCTYPE html>
+<html lang="it">
 
-<div style="
-position:fixed;
-bottom:50px;
-left:50%;
-transform:translateX(-50%);
-z-index:999999;
-">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gisou</title>
 
-<a
-    href="#"
-    id="add-to-cart"
-    class="liquid-buy-btn"
->
-    ADD TO CART
-</a>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-</div>
+<body>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+    <!-- NAVBAR IN OVERLAY -->
+    <header id="custom-navbar" class="custom-navbar">
+        <div class="nav-logo">
+            <a href="#">GISOU</a>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#">Shop <span class="arrow">▼</span></a>
+                <ul class="dropdown">
+                    <li><a href="#">Tutti i Prodotti</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Oli di Miele</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#">Collections <span class="arrow">▼</span></a>
+                <ul class="dropdown">
+                    <li><a href="#">Honey Infused</a></li>
+                    <li><a href="#">Propolis Infused</a></li>
+                    <li><a href="#">Nuovi Arrivi</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#">About <span class="arrow">▼</span></a>
+                <ul class="dropdown">
+                    <li><a href="#">La Nostra Storia</a></li>
+                    <li><a href="#">Il Giardino di Mirsalehi</a></li>
+                    <li><a href="#">Sostenibilità</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="nav-action-btn">Search</a>
+            <a href="#" class="nav-action-btn">Account</a>
+            <a href="https://www.gisou.com/cart" class="nav-action-btn">Cart</a>
+        </div>
+    </header>
 
-    const button = document.getElementById("add-to-cart");
+    <div class="scroll-container">
 
-    button.addEventListener("click", (e) => {
+        <div class="sticky-section">
 
-        e.preventDefault();
+            <!-- VIDEO -->
+            <div class="video-container">
+                <video id="vid1" muted playsinline preload="auto" class="story-video">
+                    <source src="assets/01-product-reveal.mp4" type="video/mp4">
+                </video>
 
-        const cart =
-            JSON.parse(localStorage.getItem("cart")) || [];
+                <video id="vid2" muted playsinline preload="auto" class="story-video">
+                    <source src="assets/02-honey-universe.mp4" type="video/mp4">
+                </video>
 
-        const existingProduct =
-            cart.find(
-                item => item.name === "Honey Infused Lip Oil"
-            );
+                <video id="vid3" muted playsinline preload="auto" class="story-video">
+                    <source src="assets/03-final-hero.mp4" type="video/mp4">
+                </video>
+            </div>
 
-        if (existingProduct) {
+            <!-- TESTI -->
+            <div class="text-container">
 
-            existingProduct.quantity += 1;
+                <div class="scene-text" id="scene1">
+                    <h1>GISOU</h1>
+                    <h2>Honey Infused Beauty</h2>
+                    <p>Scorri per scoprire l'universo Gisou</p>
+                </div>
 
-        } else {
+                <div class="scene-text" id="scene2">
+                    <h1>IL MIELE</h1>
+                    <h2>L'origine di tutto</h2>
+                    <p>Ingredienti naturali e risultati straordinari</p>
+                </div>
 
-            cart.push({
-                name: "Honey Infused Lip Oil",
-                price: 28,
-                quantity: 1,
-                image: "assets/product.jpg"
-            });
+                <div class="scene-text" id="scene3">
+                    <h1>SHOP NOW</h1>
+                    <h2>The Honey Gloss</h2>
 
-        }
+                    <a href="https://www.gisou.com" class="cta-button" target="_blank">
+                        Acquista Ora
+                    </a>
+                </div>
 
-        localStorage.setItem(
-            "cart",
-            JSON.stringify(cart)
-        );
+            </div>
 
-        button.innerHTML = "✓ ADDED";
+            <!-- CARRELLO -->
+            <a href="https://www.gisou.com/cart" class="cart-button">
+                🛒
+            </a>
 
-        setTimeout(() => {
-            window.location.href = "acquisto.html";
-        }, 700);
+        </div>
 
-    });
+    </div>
 
-});
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
