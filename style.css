@@ -292,3 +292,40 @@ p {
         letter-spacing: 0.06em;
     }
 
+/* Dropdown nascosti */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    list-style: none;
+    padding: 12px 0;
+    min-width: 220px;
+
+    background: rgba(20,20,20,0.95);
+    backdrop-filter: blur(20px);
+
+    border-radius: 12px;
+    z-index: 2000;
+}
+
+/* Mostra dropdown solo al passaggio del mouse */
+.nav-item {
+    position: relative;
+}
+
+.nav-item:hover .dropdown {
+    display: block;
+}
+
+/* Stile voci dropdown */
+.dropdown li {
+    list-style: none;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px 18px;
+    white-space: nowrap;
+}
