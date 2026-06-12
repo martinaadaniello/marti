@@ -221,13 +221,14 @@ p {
     display: block;
 }
 
-/* MENU */
+/* MENU SINISTRA */
 .nav-menu {
     display: flex;
     align-items: center;
     gap: 30px;
     list-style: none;
-    margin: 0;
+
+    margin-right: auto;
     padding: 0;
 }
 
@@ -243,11 +244,27 @@ p {
     letter-spacing: 1px;
 }
 
+/* LOGO CENTRALE */
+.nav-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.nav-logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+}
+
 /* AZIONI DESTRA */
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 20px;
+
     margin-left: auto;
 }
 
