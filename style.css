@@ -222,6 +222,64 @@ p {
     color: white;
 }
 
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-item {
+    position: relative;
+    list-style: none;
+}
+
+.nav-item > a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    min-width: 220px;
+    padding: 12px 0;
+    margin-top: 12px;
+
+    list-style: none;
+
+    background: rgba(20,20,20,0.95);
+    backdrop-filter: blur(20px);
+
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+
+    z-index: 9999;
+}
+
+.nav-item:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    list-style: none;
+}
+
+.dropdown a {
+    display: block;
+    padding: 12px 18px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 /* NAV LOGO */
 .nav-logo {
     position: absolute;
@@ -303,24 +361,6 @@ p {
 .nav-item {
     position: relative;
     list-style: none;
-}
-
-/* Dropdown nascosti */
-.dropdown {
-    display: none !important;
-    position: absolute;
-    top: 100%;
-    left: 0;
-
-    list-style: none;
-    padding: 12px 0;
-    min-width: 220px;
-
-    background: rgba(20,20,20,0.95);
-    backdrop-filter: blur(20px);
-
-    border-radius: 12px;
-    z-index: 2000;
 }
 
 /* Mostra dropdown solo hover */
