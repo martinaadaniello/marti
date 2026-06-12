@@ -274,9 +274,10 @@ p {
 }
 
 .nav-left a {
-    font-size: 18px;
-    letter-spacing: 4px;
-    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+}
 }
 
 /* zona trigger */
