@@ -29,7 +29,7 @@ h1, h2 {
 
 /* SCROLL SECTION */
 .scroll-container {
-    height: 300vh;
+    height: calc(100vh * 7);
 }
 
 .sticky-section {
