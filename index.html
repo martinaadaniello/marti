@@ -109,3 +109,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const videos = [
+        document.getElementById("vid1"),
+        document.getElementById("vid2"),
+        document.getElementById("vid3")
+    ];
+
+    let currentIndex = 0;
+
+    function showVideo(index) {
+
+        videos.forEach((v, i) => {
+            if (i === index) {
+                v.style.opacity = 1;
+                v.style.zIndex = 2;
+                v.play();
+            } else {
+                v.style.opacity = 0;
+                v.pause();
+            }
+        });
+
+    }
+
+    showVideo(0);
+
+    window.addEventListener("scroll", () => {
+
+        const scrollY = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+        const progress = scrollY / maxScroll;
+
+        const newIndex =
+            Math.min(
+                videos.length - 1,
+                Math.floor(progress * videos.length)
+            );
+
+        if (newIndex !== currentIndex) {
+            currentIndex = newIndex;
+            showVideo(currentIndex);
+        }
+
+    });
+
+});
+</script>
