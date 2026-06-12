@@ -63,7 +63,7 @@ videos.forEach((video, index) => {
 ScrollTrigger.create({
   trigger: ".scroll-container",
   start: "top top",
-  end: () => `+=${window.innerHeight * 5}`,
+  end: () => `+=${window.innerHeight * 6}`,
   pin: ".sticky-section",
   scrub: 1,
   invalidateOnRefresh: true
