@@ -5,35 +5,94 @@ const vid2 = document.getElementById("vid2");
 const vid3 = document.getElementById("vid3");
 
 const videos = [vid1, vid2, vid3];
+const texts = [
+  document.getElementById("scene1"),
+  document.getElementById("scene2"),
+  document.getElementById("scene3")
+];
 
-videos.forEach(v => {
-    v.pause();
-    v.preload = "auto";
-    v.currentTime = 0.01;
+videos.forEach((v, i) => {
+  v.pause();
+  v.preload = "auto";
+  v.currentTime = 0;
+
+  v.style.opacity = i === 0 ? "1" : "0";
 });
 
-// iOS Mobile Unlocker: Browsers block programmatic video control until a user interacts with the page.
-let isUnlocked = false;
-function unlockVideos() {
-    if (isUnlocked) return;
-    videos.forEach(v => {
-        const p = v.play();
-        if (p !== undefined) {
-            p.then(() => { v.pause(); }).catch(() => {});
-        }
-    });
-    isUnlocked = true;
-    window.removeEventListener('touchstart', unlockVideos);
-    window.removeEventListener('click', unlockVideos);
-}
-window.addEventListener('touchstart', unlockVideos);
-window.addEventListener('click', unlockVideos);
+texts.forEach((t, i) => {
+  t.style.opacity = i === 0 ? "1" : "0";
+  t.style.pointerEvents = i === 0 ? "auto" : "none";
+});
 
-// helper: set time synchronously. GSAP already runs inside requestAnimationFrame!
-function setVideoTime(video, time) {
-    if (!isNaN(time) && video.readyState >= 1) {
-        video.currentTime = time;
+let isUnlocked = false;
+
+function unlockVideos() {
+  if (isUnlocked) return;
+
+  videos.forEach(v => {
+    const p = v.play();
+    if (p !== undefined) {
+      p.then(() => {
+        v.pause();
+        v.currentTime = 0;
+      }).catch(() => {});
     }
+  });
+
+  isUnlocked = true;
+  window.removeEventListener("touchstart", unlockVideos);
+  window.removeEventListener("click", unlockVideos);
+}
+
+window.addEventListener("touchstart", unlockVideos);
+window.addEventListener("click", unlockVideos);
+
+function setActiveScene(index) {
+  videos.forEach((video, i) => {
+    video.style.opacity = i === index ? "1" : "0";
+  });
+
+  texts.forEach((text, i) => {
+    text.style.opacity = i === index ? "1" : "0";
+    text.style.pointerEvents = i === index ? "auto" : "none";
+  });
+}
+
+function createVideoScroll(video, index) {
+  video.addEventListener("loadedmetadata", () => {
+    const sceneLength = window.innerHeight * 2;
+
+    ScrollTrigger.create({
+      trigger: ".scroll-container",
+      start: () => `top top-=${index * sceneLength}`,
+      end: () => `top top-=${(index + 1) * sceneLength}`,
+      scrub: true,
+      invalidateOnRefresh: true,
+      onUpdate: self => {
+        const time = self.progress * video.duration;
+
+        if (!isNaN(time) && video.readyState >= 1) {
+          video.currentTime = time;
+        }
+
+        setActiveScene(index);
+      }
+    });
+  });
+}
+
+videos.forEach((video, index) => {
+  createVideoScroll(video, index);
+});
+
+ScrollTrigger.create({
+  trigger: ".scroll-container",
+  start: "top top",
+  end: () => `+=${window.innerHeight * 6}`,
+  pin: ".sticky-section",
+  scrub: true,
+  invalidateOnRefresh: true
+});
 }
 
 const tl = gsap.timeline({
