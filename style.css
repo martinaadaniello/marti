@@ -309,3 +309,51 @@ p {
     display:block;
     opacity:0.95;
 }
+.buy-btn{
+
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:18px 40px;
+background:rgba(255,255,255,0.03);
+backdrop-filter:blur(40px) saturate(220%);
+-webkit-backdrop-filter:blur(40px) saturate(220%);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:999px;
+color:white;
+font-size:13px;
+font-weight:500;
+letter-spacing:2px;
+text-transform:uppercase;
+cursor:pointer;
+box-shadow:
+    0 8px 30px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+transition:all .35s ease;
+position:relative;
+overflow:hidden;
+
+}
+
+.buy-btn::before{
+
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.02) 45%,
+    rgba(255,255,255,0.08)
+);
+pointer-events:none;
+
+}
+
+.buy-btn:hover{
+
+background:rgba(255,255,255,0.06);
+transform:translateY(-2px);
+border-color:rgba(255,255,255,0.15);
+
+}
