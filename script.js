@@ -98,16 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const buyBtn = document.getElementById("floating-buy-btn");
-const buyTrigger = document.querySelector(".buy-trigger");
 
-if (buyBtn && buyTrigger) {
+document.addEventListener("mousemove", (e) => {
 
-  buyTrigger.addEventListener("mouseenter", () => {
+  if (e.clientY >= window.innerHeight - 80) {
     buyBtn.classList.add("visible");
-  });
-
-  buyTrigger.addEventListener("mouseleave", () => {
+  } else {
     buyBtn.classList.remove("visible");
-  });
+  }
 
-}
+});
