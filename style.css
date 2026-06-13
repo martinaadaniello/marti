@@ -380,18 +380,6 @@ p {
         opacity .3s ease;
 }
 
-#floating-buy-btn {
-    position: fixed;
-    left: 50%;
-    bottom: 30px;
-
-    transform: translateX(-50%);
-
-    z-index: 999999;
-
-    opacity: 1;
-
-}
 
 /* area trigger inferiore */
 .buy-trigger {
