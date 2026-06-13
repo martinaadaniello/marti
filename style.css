@@ -369,3 +369,40 @@ p {
     transform: translate(-50%, -3px) scale(1.02);
     border-color: rgba(255,255,255,0.15);
 }
+#floating-buy-btn::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.35),
+        rgba(255,255,255,0.08) 30%,
+        transparent 60%
+    );
+
+    pointer-events: none;
+}
+
+#floating-buy-btn::after {
+    content: "";
+    position: absolute;
+
+    width: 120px;
+    height: 200%;
+
+    top: -50%;
+    left: -30px;
+
+    transform: rotate(25deg);
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+
+    pointer-events: none;
+}
