@@ -108,30 +108,33 @@ document.addEventListener("mousemove", (e) => {
   }
 
 });
-const buyBtn = document.getElementById("floating-buy-btn");
 
 if (buyBtn) {
 
-    buyBtn.addEventListener("click", () => {
+  buyBtn.addEventListener("click", () => {
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        const existingProduct = cart.find(
-            item => item.name === "Honey Gloss"
-        );
+    const existingProduct = cart.find(
+      item => item.name === "Honey Gloss"
+    );
 
-        if (existingProduct) {
-            existingProduct.quantity++;
-        } else {
-            cart.push({
-                name: "Honey Gloss",
-                price: 28,
-                quantity: 1
-            });
-        }
+    if (existingProduct) {
 
-        localStorage.setItem("cart", JSON.stringify(cart));
+      existingProduct.quantity++;
 
-    });
+    } else {
+
+      cart.push({
+        name: "Honey Gloss",
+        price: 28,
+        quantity: 1
+      });
+
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+  });
 
 }
