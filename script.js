@@ -99,6 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const buyBtn = document.getElementById("floating-buy-btn");
 
+document.addEventListener("mousemove", (e) => {
+
+  if (e.clientY >= window.innerHeight * 0.7) {
+    buyBtn.classList.add("visible");
+  } else {
+    buyBtn.classList.remove("visible");
+  }
+
+});
+
 if (buyBtn) {
 
   buyBtn.addEventListener("click", (e) => {
