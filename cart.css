@@ -20,7 +20,6 @@ h1{
     font-size:48px;
     font-weight:300;
     margin-bottom:40px;
-    color:#111;
 }
 
 .empty-cart{
@@ -34,31 +33,26 @@ h1{
     align-items:center;
 
     padding:24px;
-
     margin-bottom:20px;
 
     border:1px solid #e5e5e5;
     border-radius:20px;
 
-    background:#ffffff;
+    background:#fff;
 
     box-shadow:
         0 10px 30px rgba(0,0,0,.05);
 }
 
 .item-info h3{
-    font-size:22px;
     margin-bottom:8px;
-    color:#111;
 }
 
 .price{
+    color:#D4AF37;
     font-size:20px;
     font-weight:600;
-    color:#D4AF37;
 }
-
-/* QUANTITA' */
 
 .quantity-controls{
     display:flex;
@@ -74,42 +68,26 @@ h1{
     border-radius:50%;
 
     background:#D4AF37;
-    color:#111;
+    color:black;
 
     font-size:22px;
     font-weight:600;
 
     cursor:pointer;
-
-    transition:.25s;
-}
-
-.quantity-controls button:hover{
-    transform:scale(1.08);
 }
 
 .quantity-controls span{
-    min-width:24px;
-    text-align:center;
-
     font-size:18px;
-    font-weight:500;
-
-    color:#111;
+    min-width:20px;
+    text-align:center;
 }
-
-/* TOTALE */
 
 .total{
     margin-top:40px;
 
     font-size:30px;
     font-weight:600;
-
-    color:#111;
 }
-
-/* BOTTONI */
 
 .buttons{
     margin-top:40px;
@@ -120,6 +98,7 @@ h1{
 
 .btn{
     display:inline-flex;
+
     align-items:center;
     justify-content:center;
 
@@ -128,47 +107,16 @@ h1{
     border-radius:999px;
 
     text-decoration:none;
-
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:translateY(-2px);
 }
 
 .btn-shop{
     background:white;
+    border:1px solid #ddd;
     color:#111;
-
-    border:1px solid #dcdcdc;
 }
 
 .btn-checkout{
     background:#D4AF37;
     color:#111;
-
     font-weight:600;
-}
-
-/* RESPONSIVE */
-
-@media (max-width:768px){
-
-    .item{
-        flex-direction:column;
-        gap:20px;
-        align-items:flex-start;
-    }
-
-    h1{
-        font-size:36px;
-    }
-
-    .buttons{
-        flex-direction:column;
-    }
-
-    .btn{
-        width:100%;
-    }
 }
