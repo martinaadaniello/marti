@@ -384,25 +384,3 @@ p {
 
     pointer-events: none;
 }
-
-#floating-buy-btn::after {
-    content: "";
-    position: absolute;
-
-    width: 120px;
-    height: 200%;
-
-    top: -50%;
-    left: -30px;
-
-    transform: rotate(25deg);
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.18),
-        transparent
-    );
-
-    pointer-events: none;
-}
