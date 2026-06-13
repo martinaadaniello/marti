@@ -12,7 +12,7 @@ function renderCart() {
     container.innerHTML = "";
     totalBox.innerHTML = "";
 
-    if(cart.length === 0){
+    if (cart.length === 0) {
 
         container.innerHTML = `
             <p class="empty-cart">
@@ -28,6 +28,7 @@ function renderCart() {
     cart.forEach((item, index) => {
 
         const subtotal = item.price * item.quantity;
+
         total += subtotal;
 
         container.innerHTML += `
@@ -35,6 +36,7 @@ function renderCart() {
 
                 <div class="item-info">
                     <h3>${item.name}</h3>
+
                     <div class="price">
                         €${subtotal.toFixed(2)}
                     </div>
@@ -42,11 +44,17 @@ function renderCart() {
 
                 <div class="quantity-controls">
 
-                    <button onclick="decreaseQuantity(${index})">−</button>
+                    <button onclick="decreaseQuantity(${index})">
+                        −
+                    </button>
 
-                    <span>${item.quantity}</span>
+                    <span>
+                        ${item.quantity}
+                    </span>
 
-                    <button onclick="increaseQuantity(${index})">+</button>
+                    <button onclick="increaseQuantity(${index})">
+                        +
+                    </button>
 
                 </div>
 
@@ -64,6 +72,7 @@ function increaseQuantity(index){
     cart[index].quantity++;
 
     saveCart();
+
     renderCart();
 }
 
@@ -72,10 +81,12 @@ function decreaseQuantity(index){
     cart[index].quantity--;
 
     if(cart[index].quantity <= 0){
+
         cart.splice(index, 1);
     }
 
     saveCart();
+
     renderCart();
 }
 
