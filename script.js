@@ -96,3 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const buyBtn = document.getElementById("floating-buy-btn");
+const buyTrigger = document.querySelector(".buy-trigger");
+
+if (buyBtn && buyTrigger) {
+
+  buyTrigger.addEventListener("mouseenter", () => {
+    buyBtn.classList.add("visible");
+  });
+
+  buyTrigger.addEventListener("mouseleave", () => {
+    buyBtn.classList.remove("visible");
+  });
+
+}
