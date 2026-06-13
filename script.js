@@ -99,41 +99,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const buyBtn = document.getElementById("floating-buy-btn");
 
-document.addEventListener("mousemove", (e) => {
-
-  if (e.clientY >= window.innerHeight - 80) {
-    buyBtn.classList.add("visible");
-  } else {
-    buyBtn.classList.remove("visible");
-  }
-
-});
-
 if (buyBtn) {
 
-  buyBtn.addEventListener("click", () => {
+  buyBtn.addEventListener("click", (e) => {
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    e.preventDefault();
 
-    const existingProduct = cart.find(
-      item => item.name === "Honey Gloss"
+    console.log("CLICK RILEVATO");
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify([
+        {
+          name: "Honey Gloss",
+          price: 28,
+          quantity: 1
+        }
+      ])
     );
 
-    if (existingProduct) {
-
-      existingProduct.quantity++;
-
-    } else {
-
-      cart.push({
-        name: "Honey Gloss",
-        price: 28,
-        quantity: 1
-      });
-
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "cart.html";
 
   });
 
