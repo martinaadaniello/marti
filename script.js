@@ -109,7 +109,7 @@ document.addEventListener("mousemove", (e) => {
 
 });
 const buyBtn = document.getElementById("floating-buy-btn");
-console.log("BUY BUTTON COLLEGATO");
+
 if (buyBtn) {
 
     buyBtn.addEventListener("click", () => {
