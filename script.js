@@ -105,18 +105,23 @@ if (buyBtn) {
 
     e.preventDefault();
 
-    console.log("CLICK RILEVATO");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    localStorage.setItem(
-      "cart",
-      JSON.stringify([
-        {
-          name: "Honey Gloss",
-          price: 28,
-          quantity: 1
-        }
-      ])
+    const existingProduct = cart.find(
+      item => item.name === "Honey Gloss"
     );
+
+    if (existingProduct) {
+      existingProduct.quantity++;
+    } else {
+      cart.push({
+        name: "Honey Gloss",
+        price: 28,
+        quantity: 1
+      });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     window.location.href = "cart.html";
 
