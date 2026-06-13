@@ -380,9 +380,18 @@ p {
         opacity .3s ease;
 }
 
-#floating-buy-btn.visible {
-    transform: translate(-50%, 0);
+#floating-buy-btn {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+
+    transform: translateX(-50%);
+
+    z-index: 999999;
+
     opacity: 1;
+
+    background: red;
 }
 
 /* area trigger inferiore */
