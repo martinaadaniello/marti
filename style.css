@@ -318,7 +318,7 @@ p {
 #floating-buy-btn {
     position: fixed;
     left: 50%;
-    bottom: 30px;
+    bottom: 40px;
 
     display: flex;
     align-items: center;
