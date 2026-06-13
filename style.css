@@ -320,7 +320,7 @@ p {
     position: fixed;
     left: 50%;
     bottom: 50px;
-
+overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
