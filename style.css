@@ -189,6 +189,54 @@ p {
         rgba(255,255,255,0.01)
     );
 
+    opacity: 1;
+    transition: opacity .35s ease;
+    pointer-events: none;
+}
+
+/* GLOW SOLO IN HOVER */
+#custom-navbar::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+
+    background: radial-gradient(
+        circle at top,
+        rgba(255,255,255,0.12),
+        transparent 60%
+    );
+
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+}
+
+#custom-navbar:hover::after {
+    opacity: 1;
+}
+
+#custom-navbar:hover {
+    border-color: rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 0 40px rgba(255,255,255,0.08);
+}
+
+/* GLASS LAYER */
+#custom-navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.04),
+        rgba(255,255,255,0.01)
+    );
+
     pointer-events: none;
 }
 
