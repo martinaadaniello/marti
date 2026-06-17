@@ -191,8 +191,6 @@ border: none;
 }
 
 #custom-navbar::after {
-    content: "";
-    position: absolute;
     inset: -50%;
 
     background: radial-gradient(
@@ -200,8 +198,6 @@ border: none;
         rgba(255,255,255,0.08),
         transparent 60%
     );
-
-    pointer-events: none;
 }
 
 /* MENU SINISTRA */
