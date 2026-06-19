@@ -33,15 +33,20 @@ function renderCart() {
 
         container.innerHTML += `
             <div class="item">
+                <div class="item-media-group">
+                    <div class="product-image-wrap">
+                        <img src="assets/gisou-product.jpeg" alt="${item.name}" class="product-image">
+                    </div>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity(${index})">−</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="increaseQuantity(${index})">+</button>
+                    </div>
+                </div>
                 <div class="item-info">
                     <h3>${item.name}</h3>
                     <p class="item-subtitle">Honey Infused Hair Oil</p>
                     <div class="price">€${subtotal.toFixed(2)}</div>
-                </div>
-                <div class="quantity-controls">
-                    <button onclick="decreaseQuantity(${index})">−</button>
-                    <span>${item.quantity}</span>
-                    <button onclick="increaseQuantity(${index})">+</button>
                 </div>
             </div>
         `;
