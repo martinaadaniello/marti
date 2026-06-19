@@ -33,31 +33,16 @@ function renderCart() {
 
         container.innerHTML += `
             <div class="item">
-
                 <div class="item-info">
                     <h3>${item.name}</h3>
-
-                    <div class="price">
-                        €${subtotal.toFixed(2)}
-                    </div>
+                    <p class="item-subtitle">Honey Infused Hair Oil</p>
+                    <div class="price">€${subtotal.toFixed(2)}</div>
                 </div>
-
                 <div class="quantity-controls">
-
-                    <button onclick="decreaseQuantity(${index})">
-                        −
-                    </button>
-
-                    <span>
-                        ${item.quantity}
-                    </span>
-
-                    <button onclick="increaseQuantity(${index})">
-                        +
-                    </button>
-
+                    <button onclick="decreaseQuantity(${index})">−</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="increaseQuantity(${index})">+</button>
                 </div>
-
             </div>
         `;
     });
