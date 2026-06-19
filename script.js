@@ -76,24 +76,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!navbar) return;
 
-  let mouseInsideNavbar = false;
+  // Visibile all'apertura della pagina
+  navbar.classList.add("visible");
 
-  navbar.addEventListener("mouseenter", () => {
-    mouseInsideNavbar = true;
-    navbar.classList.add("visible");
-  });
+  function updateNavbar(mouseY) {
+    const atTop = window.scrollY <= 10;
+    const cursorInTopZone = mouseY !== null && mouseY <= 100;
 
-  navbar.addEventListener("mouseleave", () => {
-    mouseInsideNavbar = false;
-    navbar.classList.remove("visible");
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (e.clientY <= 50 || mouseInsideNavbar) {
+    if (atTop || cursorInTopZone) {
       navbar.classList.add("visible");
     } else {
       navbar.classList.remove("visible");
     }
+  }
+
+  // Aggiorna alla scroll
+  window.addEventListener("scroll", () => {
+    updateNavbar(null);
+  }, { passive: true });
+
+  // Aggiorna al movimento del cursore
+  document.addEventListener("mousemove", (e) => {
+    updateNavbar(e.clientY);
   });
 });
 
