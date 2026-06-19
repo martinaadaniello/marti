@@ -433,3 +433,8 @@ p {
 
     pointer-events: none;
 }
+
+/* nasconde il pulsante carrello emoji legacy dentro sticky-section */
+.cart-button {
+    display: none;
+}
