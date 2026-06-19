@@ -47,13 +47,16 @@ body {
 .back-arrow {
     font-size: 16px;
 }
-
 .header-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 400;
-    letter-spacing: 6px;
-    color: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
 }
 
 .header-spacer {
