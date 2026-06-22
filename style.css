@@ -99,10 +99,10 @@ h2 {
 
 #scene1 {
     top: 50%;
-    right: clamp(50px, 6vw, 100px);
-    left: auto;
+    left: clamp(50px, 4vw, 64px);
+    right: auto;
     transform: translateY(-50%);
-    max-width: min(45vw, 600px);
+    max-width: min(39vw, 500px);
     padding: 0;
     text-align: left;
 }
