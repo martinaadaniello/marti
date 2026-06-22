@@ -76,6 +76,16 @@ h2 {
     pointer-events: none;
 }
 
+.text-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent 35%),
+        radial-gradient(circle at center, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.48));
+    pointer-events: none;
+}
+
 .scene-text {
     position: absolute;
     top: 50%;
@@ -95,16 +105,32 @@ h2 {
     visibility: visible;
 }
 
+#scene1 {
+    top: 50%;
+    left: clamp(50px, 4vw, 64px);
+    transform: translateY(-50%);
+    max-width: min(39vw, 500px);
+    padding: 0;
+    text-align: left;
+}
+
 /* TYPOGRAPHY */
 h1 {
     font-size: clamp(3rem, 8vw, 7rem);
-    letter-spacing: 0.1em;
+    letter-spacing: 0;
     text-transform: uppercase;
     margin-bottom: 10px;
 
     background: linear-gradient(120deg, #d4af37, #f7df8b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.usp-title {
+    font-size: clamp(2.1rem, 4.4vw, 4.25rem);
+    line-height: 1.02;
+    text-transform: none;
+    text-wrap: balance;
 }
 
 h2 {
@@ -121,8 +147,19 @@ p {
     text-transform: uppercase;
 }
 
+.usp-kicker {
+    margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+}
+
 /* CTA */
 .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 30px;
     padding: 16px 40px;
     border-radius: 40px;
@@ -133,6 +170,10 @@ p {
 
     transition: all .35s ease;
     pointer-events: auto;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
 }
 
 .cta-button:hover {
@@ -437,4 +478,44 @@ p {
 /* nasconde il pulsante carrello emoji legacy dentro sticky-section */
 .cart-button {
     display: none;
+}
+
+@media (max-width: 760px) {
+    .scene-text {
+        top: 54%;
+        max-width: 560px;
+        padding: 0 24px;
+    }
+
+    #scene1 {
+        top: 36%;
+        left: 24px;
+        max-width: calc(100vw - 48px);
+        padding: 0;
+    }
+
+    h1 {
+        font-size: clamp(2.55rem, 14vw, 4.4rem);
+        line-height: 0.98;
+    }
+
+    .usp-title {
+        font-size: clamp(1.9rem, 8.4vw, 2.25rem);
+        line-height: 1.04;
+    }
+
+    h2 {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .usp-kicker {
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+    }
+
+    .cta-button {
+        width: min(100%, 280px);
+        padding: 15px 22px;
+    }
 }
