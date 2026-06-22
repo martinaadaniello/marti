@@ -4,53 +4,43 @@
     if (!isCartPage) {
         const style = document.createElement('style');
         style.textContent = `
-            .music-control-btn {
+            .music-control-text {
                 position: fixed;
                 bottom: 30px;
                 left: 30px;
                 z-index: 9999;
-                background: rgba(254, 250, 242, 0.85);
-                border: 1px solid rgba(212, 175, 55, 0.4);
+                background: none;
+                border: none;
+                outline: none;
                 color: #6b5e3e;
                 font-family: 'Inter', sans-serif;
                 font-size: 11px;
                 font-weight: 500;
-                letter-spacing: 1.5px;
+                letter-spacing: 2px;
                 text-transform: uppercase;
-                padding: 12px 24px;
-                border-radius: 999px;
                 cursor: pointer;
-                box-shadow: 
-                    0 8px 32px rgba(212, 175, 55, 0.1),
-                    0 4px 12px rgba(0, 0, 0, 0.04);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-                display: flex;
-                align-items: center;
-                gap: 8px;
                 user-select: none;
+                padding: 0;
+                opacity: 0.45;
+                text-decoration: line-through;
+                transition: all 0.3s ease;
             }
 
-            .music-control-btn:hover {
-                transform: translateY(-2px);
-                border-color: #D4AF37;
+            .music-control-text:hover {
+                opacity: 0.85;
+            }
+
+            .music-control-text.active {
+                opacity: 1;
+                text-decoration: none;
                 color: #D4AF37;
-                box-shadow: 
-                    0 12px 40px rgba(212, 175, 55, 0.2),
-                    0 6px 16px rgba(0, 0, 0, 0.06);
-            }
-
-            .music-control-btn:active {
-                transform: translateY(0);
             }
 
             /* Responsive per dispositivi mobili */
             @media (max-width: 768px) {
-                .music-control-btn {
+                .music-control-text {
                     bottom: 20px;
                     left: 20px;
-                    padding: 10px 20px;
                     font-size: 10px;
                 }
             }
@@ -69,8 +59,8 @@
     let button = null;
     if (!isCartPage) {
         button = document.createElement('button');
-        button.className = 'music-control-btn';
-        button.innerHTML = '🔊 Attiva musica';
+        button.className = 'music-control-text';
+        button.innerHTML = 'Sound';
         document.body.appendChild(button);
     }
 
@@ -101,7 +91,9 @@
     // ─── FUNZIONI DI PLAY / PAUSE ──────────────────────────
     function playMusic() {
         audio.play().then(() => {
-            if (button) button.innerHTML = '🔇 Disattiva musica';
+            if (button) {
+                button.classList.add('active');
+            }
             fadeIn();
             localStorage.setItem('musicEnabled', 'true');
         }).catch(err => {
@@ -116,7 +108,9 @@
         }
         audio.pause();
         audio.volume = 0;
-        if (button) button.innerHTML = '🔊 Attiva musica';
+        if (button) {
+            button.classList.remove('active');
+        }
         localStorage.setItem('musicEnabled', 'false');
     }
 
