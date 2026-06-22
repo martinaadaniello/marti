@@ -123,6 +123,10 @@ h1 {
     line-height: 1.02;
     text-transform: none;
     text-wrap: balance;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: #f0bebf;
+    color: #f0bebf;
 }
 
 h2 {

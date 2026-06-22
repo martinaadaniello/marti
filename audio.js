@@ -12,28 +12,28 @@
                 background: none;
                 border: none;
                 outline: none;
-                color: #6b5e3e;
+                color: #f0bebf;
                 font-family: 'Inter', sans-serif;
-                font-size: 11px;
-                font-weight: 500;
+                font-size: 13px;
+                font-weight: 600;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 cursor: pointer;
                 user-select: none;
                 padding: 0;
-                opacity: 0.45;
+                opacity: 0.7;
                 text-decoration: line-through;
                 transition: all 0.3s ease;
             }
 
             .music-control-text:hover {
-                opacity: 0.85;
+                opacity: 1;
             }
 
             .music-control-text.active {
                 opacity: 1;
                 text-decoration: none;
-                color: #D4AF37;
+                color: #f0bebf;
             }
 
             /* Responsive per dispositivi mobili */
@@ -41,7 +41,7 @@
                 .music-control-text {
                     bottom: 20px;
                     left: 20px;
-                    font-size: 10px;
+                    font-size: 11px;
                 }
             }
         `;
