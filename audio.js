@@ -14,9 +14,9 @@
                 outline: none;
                 color: #f0bebf;
                 font-family: 'Inter', sans-serif;
-                font-size: 13px;
+                font-size: 16px;
                 font-weight: 600;
-                letter-spacing: 2px;
+                letter-spacing: 2.5px;
                 text-transform: uppercase;
                 cursor: pointer;
                 user-select: none;
@@ -41,7 +41,7 @@
                 .music-control-text {
                     bottom: 20px;
                     left: 20px;
-                    font-size: 11px;
+                    font-size: 13px;
                 }
             }
         `;
