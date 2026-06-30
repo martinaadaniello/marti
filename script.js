@@ -23,6 +23,11 @@ texts.forEach((text, index) => {
   text.classList.toggle("active", index === 0);
 });
 
+const targetProgress = [0, 0, 0];
+const currentProgress = [0, 0, 0];
+const lerpFactor = 0.06; // Coefficiente di fluidità per lo scroll cinematico
+let activeSceneIndex = 0;
+
 function setActiveScene(index) {
   videos.forEach((video, i) => {
     video.classList.toggle("active", i === index);
@@ -45,13 +50,16 @@ function createVideoScroll(video, index) {
       invalidateOnRefresh: true,
 
       onUpdate: self => {
-        const time = self.progress * video.duration;
-
-        if (!isNaN(time) && video.readyState >= 1) {
-          video.currentTime = time;
+        // Nessun lavoro pesante o aggiornamento diretto del video qui dentro
+        targetProgress[index] = self.progress;
+        if (self.isActive) {
+          activeSceneIndex = index;
         }
-
-        setActiveScene(index);
+      },
+      onToggle: self => {
+        if (self.isActive) {
+          activeSceneIndex = index;
+        }
       }
     });
   });
@@ -60,6 +68,36 @@ function createVideoScroll(video, index) {
 videos.forEach((video, index) => {
   createVideoScroll(video, index);
 });
+
+// Loop requestAnimationFrame per aggiornare i video e applicare le trasformazioni
+function updateVideosLoop() {
+  videos.forEach((video, index) => {
+    // Interpolazione (lerp) tra il progresso corrente e quello target
+    currentProgress[index] += (targetProgress[index] - currentProgress[index]) * lerpFactor;
+
+    // Aggiornamento fluido del tempo corrente del video
+    const time = currentProgress[index] * video.duration;
+    if (!isNaN(time) && video.readyState >= 1) {
+      video.currentTime = time;
+    }
+
+    // Applicazione delle trasformazioni di parallasse ed effetto cinematico
+    if (index === activeSceneIndex) {
+      const scale = 1.05 - (currentProgress[index] * 0.05); // Zoom-out cinematico
+      const translateY = (currentProgress[index] - 0.5) * -15; // Leggera parallasse Y
+      video.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+    } else {
+      video.style.transform = "translate3d(0, 0, 0) scale(1)";
+    }
+  });
+
+  setActiveScene(activeSceneIndex);
+
+  requestAnimationFrame(updateVideosLoop);
+}
+
+// Avvio del loop di animazione
+requestAnimationFrame(updateVideosLoop);
 
 ScrollTrigger.create({
   trigger: ".scroll-container",

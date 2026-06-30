@@ -62,6 +62,8 @@ h2 {
     object-fit: cover;
     opacity: 0;
     transition: opacity 0.8s ease;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .story-video.active {
